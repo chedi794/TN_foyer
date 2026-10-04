@@ -1,0 +1,28 @@
+package esprit.tn.tn_foyer.domain;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.time.LocalDate;
+
+@Entity
+@Table(name = "reservation")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString(includeFieldNames = false)
+@EqualsAndHashCode(exclude = "idReservation")
+public class Reservation {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Setter(AccessLevel.NONE)
+    private Long idReservation;
+
+    private LocalDate dateDebut;
+    private LocalDate dateFin;
+
+    @Enumerated(EnumType.STRING)
+    private StatutReservation statut;
+}
