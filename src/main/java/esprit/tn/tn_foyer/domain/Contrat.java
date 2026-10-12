@@ -5,6 +5,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "contrat")
@@ -13,7 +15,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = false)
-@EqualsAndHashCode(exclude = "idContrat")
+@EqualsAndHashCode(exclude = {
+        "idContrat",
+        "reservation",
+        "paiements"
+})
 public class Contrat {
 
     @Id
@@ -22,6 +28,23 @@ public class Contrat {
     private Long idContrat;
 
     private LocalDate dateSignature;
+
     private BigDecimal montantTotal;
+
     private boolean valide;
+
+    // Contrat est propriétaire de la relation avec Reservation
+    @OneToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Reservation reservation;
+
+    // Un contrat possède plusieurs paiements
+    @OneToMany(
+            mappedBy = "contrat",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    private List<Paiement> paiements = new ArrayList<>();
 }

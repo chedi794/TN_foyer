@@ -12,7 +12,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = false)
-@EqualsAndHashCode(exclude = "idReservation")
+@EqualsAndHashCode(exclude = {
+        "idReservation",
+        "client",
+        "vehicule",
+        "contrat"
+})
 public class Reservation {
 
     @Id
@@ -25,4 +30,23 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    // Plusieurs réservations appartiennent à un client
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Client client;
+
+    // Plusieurs réservations peuvent concerner un véhicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Vehicule vehicule;
+
+    // Une réservation possède un contrat
+    @OneToOne(
+            mappedBy = "reservation",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    @ToString.Exclude
+    private Contrat contrat;
 }

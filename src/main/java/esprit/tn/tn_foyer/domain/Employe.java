@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = false)
-@EqualsAndHashCode(exclude = "idEmploye")
+@EqualsAndHashCode(exclude = {"idEmploye", "agence"})
 public class Employe {
 
     @Id
@@ -23,4 +23,9 @@ public class Employe {
 
     @Enumerated(EnumType.STRING)
     private RoleEmploye role;
+
+    // Plusieurs employés appartiennent à une agence
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Agence agence;
 }

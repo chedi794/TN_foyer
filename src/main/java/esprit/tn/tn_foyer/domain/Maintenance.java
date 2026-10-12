@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString(includeFieldNames = false)
-@EqualsAndHashCode(exclude = "idMaintenance")
+@EqualsAndHashCode(exclude = {"idMaintenance", "vehicule"})
 public class Maintenance {
 
     @Id
@@ -23,4 +23,9 @@ public class Maintenance {
     private LocalDate dateDebut;
     private LocalDate dateFin;
     private String description;
+
+    // Plusieurs maintenances appartiennent à un véhicule
+    @ManyToOne(fetch = FetchType.LAZY)
+    @ToString.Exclude
+    private Vehicule vehicule;
 }
