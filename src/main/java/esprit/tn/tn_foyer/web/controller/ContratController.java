@@ -1,8 +1,9 @@
-package esprit.tn.tn_foyer.controller;
+package esprit.tn.tn_foyer.web.controller;
 
 import esprit.tn.tn_foyer.domain.*;
 import esprit.tn.tn_foyer.service.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class ContratController {
     private final IContratService contratService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Contrat create(@RequestBody Contrat contrat) {
         return contratService.create(contrat);
     }
@@ -38,6 +40,7 @@ public class ContratController {
     }
 
     @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteById(@PathVariable Long id) {
         contratService.deleteById(id);
     }

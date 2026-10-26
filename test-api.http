@@ -1,0 +1,7 @@
+### Lister tous les contrats
+GET http://localhost:8081/api/contrats
+
+###
+
+### Consulter un contrat inexistant
+GET http://localhost:8081/api/contrats/9999
