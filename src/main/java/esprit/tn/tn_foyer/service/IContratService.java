@@ -1,6 +1,6 @@
 package esprit.tn.tn_foyer.service;
 
-import esprit.tn.tn_foyer.domain.Contrat;
+import esprit.tn.tn_foyer.domain.*;
 
 import java.util.List;
 

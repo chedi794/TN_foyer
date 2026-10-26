@@ -1,8 +1,8 @@
 package esprit.tn.tn_foyer.service;
 
-import esprit.tn.tn_foyer.domain.Contrat;
-import esprit.tn.tn_foyer.exception.ResourceNotFoundException;
-import esprit.tn.tn_foyer.repository.IContratRepository;
+import esprit.tn.tn_foyer.domain.*;
+import esprit.tn.tn_foyer.exception.*;
+import esprit.tn.tn_foyer.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -44,7 +44,6 @@ public class ContratServiceImpl implements IContratService {
 
     @Override
     public List<Contrat> findAll() {
-
         return contratRepository.findAll();
     }
 

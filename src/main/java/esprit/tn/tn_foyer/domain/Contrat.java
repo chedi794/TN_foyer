@@ -33,12 +33,10 @@ public class Contrat {
 
     private boolean valide;
 
-    // Contrat est propriétaire de la relation avec Reservation
     @OneToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Reservation reservation;
 
-    // Un contrat possède plusieurs paiements
     @OneToMany(
             mappedBy = "contrat",
             cascade = CascadeType.ALL,
